@@ -14,22 +14,14 @@ void printArray(vec &arr)
     cout << endl;
 }
 
-vec compareTheTriplets(vec a, vec b)
+vec gradingStudent(vec &grades)
 {
-    int alice = 0;
-    int bob = 0;
-    vec answer(2);
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < grades.size(); i++)
     {
-        if (a[i] > b[i])
-            alice++;
-        if (a[i] < b[i])
-            bob++;
+        if (5 - (grades[i] % 5) < 3 && grades[i] >= 38)
+            grades[i] += 5 - (grades[i] % 5);
     }
-    answer[0] = alice;
-    answer[1] = bob;
-
-    return answer;
+    return grades;
 }
 
 int main()
@@ -42,17 +34,16 @@ int main()
     // freopen("output.txt", "w", stdout);
     // #endif
 
-    vec alice, bob, result;
-    ll el;
-    for (int i = 0; i < 3; i++)
-        cin >> el, alice.push_back(el);
+    int students, marks;
+    vec grades;
 
-    for (int i = 0; i < 3; i++)
-        cin >> el, bob.push_back(el);
+    cin >> students;
+    for (int i = 0; i < students; i++)
+        cin >> marks, grades.push_back(marks);
 
-    result = compareTheTriplets(alice, bob);
-
-    printArray(result);
+    printArray(grades);
+    gradingStudent(grades);
+    printArray(grades);
 
     return 0;
 }
